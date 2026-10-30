@@ -6,13 +6,13 @@ La versión actual implementa la base de autenticación, los roles y los paneles
 
 ## Contenido
 
-- [Descripción](#descripción)
-- [Stack tecnológico](#stack-tecnológico)
-- [Metodología en V: rama descendente](#metodología-en-v-rama-descendente)
+- [Descripción](#descripcion)
+- [Stack tecnológico](#stack-tecnologico)
+- [Metodología en V: rama descendente](#metodologia-en-v-rama-descendente)
 - [Checklist B.1-B.8](#checklist-b1-b8)
 - [Arquitectura](#arquitectura)
 - [Estructura del proyecto](#estructura-del-proyecto)
-- [Instalación y ejecución](#instalación-y-ejecución)
+- [Instalación y ejecución](#instalacion-y-ejecucion)
 - [Usuarios de prueba](#usuarios-de-prueba)
 - [Rutas principales](#rutas-principales)
 - [Roles y permisos](#roles-y-permisos)
@@ -20,7 +20,7 @@ La versión actual implementa la base de autenticación, los roles y los paneles
 - [Roadmap](#roadmap)
 - [Notas de seguridad](#notas-de-seguridad)
 
-## Descripción
+## Descripción <a name="descripcion"></a>
 
 ### Propósito
 
@@ -47,7 +47,7 @@ La base implementada incluye:
 
 Los anuncios, períodos académicos, materias, secciones, asignaciones docentes, inscripciones de estudiantes y búsqueda avanzada forman parte de las siguientes fases del proyecto.
 
-## Stack tecnológico
+## Stack tecnológico <a name="stack-tecnologico"></a>
 
 | Componente | Tecnología | Uso en el proyecto |
 |---|---|---|
@@ -60,7 +60,7 @@ Los anuncios, períodos académicos, materias, secciones, asignaciones docentes,
 
 El frontend Vite todavía no consume una API del backend. Las pantallas visibles de AulaBoard se renderizan desde Django; el servicio Vite queda preparado para la integración futura.
 
-## Metodología en V: rama descendente
+## Metodología en V: rama descendente <a name="metodologia-en-v-rama-descendente"></a>
 
 El proyecto sigue la rama descendente de la metodología en V. Cada etapa descompone el problema y produce insumos concretos para la siguiente, hasta llegar al punto de inflexión en la codificación.
 
@@ -200,7 +200,7 @@ La codificación integra las decisiones anteriores en una aplicación funcional.
 
 La implementación actual corresponde a la base de autenticación y roles. Las funcionalidades académicas se incorporarán de forma incremental en las siguientes fases.
 
-## Checklist B.1-B.8
+## Checklist B.1-B.8 <a name="checklist-b1-b8"></a>
 
 Las siguientes condiciones estructuran el inicio de la fase de codificación. Cada una se justifica por su aporte al proyecto.
 
@@ -276,7 +276,7 @@ aulaboard/
 └── README.md
 ```
 
-## Instalación y ejecución
+## Instalación y ejecución <a name="instalacion-y-ejecucion"></a>
 
 ### Requisitos
 
