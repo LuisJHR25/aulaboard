@@ -1,0 +1,114 @@
+{% load static %}
+{# Plantilla base: estructura común, navegación por rol y control del tema. #}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anuncios académicos de la carrera de Ingeniería en Informática.">
+    <title>{% block title %}AulaBoard{% endblock %}</title>
+    {# Aplica el tema guardado antes de pintar para evitar parpadeos. #}
+    <script>
+        (() => {
+            const root = document.documentElement;
+            try {
+                const mode = localStorage.getItem('aulaboard-tema');
+                if (mode === 'dark' || mode === 'light') root.dataset.mode = mode;
+            } catch (error) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    {# Barra superior con navegación adaptada al rol autenticado. #}
+    <header class="barra">
+        <div class="contenedor barra-contenido">
+            <a class="marca" href="{% url 'home' %}">AulaBoard</a>
+            <nav class="navegacion">
+                <a href="{% url 'home' %}">Inicio</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}">Mi panel</a>
+                    {% if user.is_superuser or user.es_administrador %}
+                        <a href="{% url 'panel_administrador' %}">Administración</a>
+                    {% elif user.es_coordinador %}
+                        <a href="{% url 'panel_coordinador' %}">Coordinación</a>
+                    {% elif user.es_docente %}
+                        <a href="{% url 'dashboard_docente' %}">Mis secciones</a>
+                    {% else %}
+                        <a href="{% url 'dashboard_estudiante' %}">Mis anuncios</a>
+                    {% endif %}
+                    <span class="usuario">
+                        <span class="usuario-nombre">{{ user.get_full_name|default:user.username }}</span>
+                        <span class="usuario-rol">{{ user.get_rol_display }}</span>
+                    </span>
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                    <a href="{% url 'registro' %}">Registrarse</a>
+                {% endif %}
+                <button class="tema-switch" type="button" data-theme-toggle role="switch" aria-checked="false" aria-label="Tema oscuro" title="Cambiar tema">
+                    <span class="tema-switch-pista" aria-hidden="true">
+                        <span class="tema-switch-bola"></span>
+                    </span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    {# Contenido específico de cada página y mensajes del sistema. #}
+    <main class="contenedor">
+        {% if messages %}
+            <div class="mensajes">
+                {% for message in messages %}
+                    <div class="mensaje {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    {# Pie común con el nombre y la descripción del proyecto. #}
+    <footer class="pie">
+        <div class="contenedor">
+            <span>AulaBoard</span>
+            <span>Anuncios académicos de Ingeniería en Informática</span>
+        </div>
+    </footer>
+    {# Sincroniza el switch con el tema actual y guarda la preferencia. #}
+    <script>
+        (() => {
+            const root = document.documentElement;
+            const toggle = document.querySelector('[data-theme-toggle]');
+            if (!toggle) return;
+            const media = window.matchMedia('(prefers-color-scheme: dark)');
+            const saved = () => {
+                try {
+                    return localStorage.getItem('aulaboard-tema');
+                } catch (error) {
+                    return null;
+                }
+            };
+            const current = () => root.dataset.mode || (media.matches ? 'dark' : 'light');
+            const update = () => {
+                const dark = current() === 'dark';
+                toggle.setAttribute('aria-checked', dark ? 'true' : 'false');
+            };
+            update();
+            toggle.addEventListener('click', () => {
+                const next = current() === 'dark' ? 'light' : 'dark';
+                root.dataset.mode = next;
+                try {
+                    localStorage.setItem('aulaboard-tema', next);
+                } catch (error) {}
+                update();
+            });
+            if (media.addEventListener) {
+                media.addEventListener('change', () => {
+                    if (!saved()) update();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

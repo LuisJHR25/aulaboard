@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{# Panel de coordinación: estructura académica y anuncios generales. #}
+
+{% block title %}Panel de coordinación - AulaBoard{% endblock %}
+
+{% block content %}
+<section class="cabecera-panel panel-cabecera">
+    <div>
+        <h1>Panel de coordinación académica</h1>
+        <p>
+            Hola, {{ user.get_full_name|default:user.username }}.
+            Gestiona la estructura académica y los anuncios generales de la carrera.
+        </p>
+    </div>
+    <span class="etiqueta">Coordinación</span>
+</section>
+
+<section class="panel-columnas">
+    <div class="panel-principal">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Estructura académica</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <div class="tabla-scroll">
+                    <table class="tabla-panel" aria-label="Estructura académica de ejemplo">
+                        <thead>
+                            <tr>
+                                <th scope="col">Materia</th>
+                                <th scope="col">Sección</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Período</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cálculo I</td>
+                                <td><span class="codigo-seccion">M-01</span></td>
+                                <td>Mañana</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Introducción a la Informática</td>
+                                <td><span class="codigo-seccion">T-01</span></td>
+                                <td>Tarde</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Lógica</td>
+                                <td><span class="codigo-seccion">FS-01</span></td>
+                                <td>Fin de semana</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Lógica</td>
+                                <td><span class="codigo-seccion">AE-01</span></td>
+                                <td>Autoestudio</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Desarrollo de Aplicaciones I</td>
+                                <td><span class="codigo-seccion">SP-01</span></td>
+                                <td>Semipresencial</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Métodos Numéricos</td>
+                                <td><span class="codigo-seccion">RP-01</span></td>
+                                <td>Repitencia</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Algoritmos y Programación III</td>
+                                <td><span class="codigo-seccion">T-02</span></td>
+                                <td>Tarde</td>
+                                <td>2026-1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="leyenda-secciones">
+                FS: Fin de semana · M: Mañana · T: Tarde · RP: Repitencia · SP: Semipresencial · AE: Autoestudio
+            </p>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>
+                    La creación de períodos, materias, secciones y la asignación de
+                    docentes se habilitarán en una próxima fase.
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <aside class="panel-lateral">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Período activo</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <div class="vista-previa-fila">
+                    <h3>2026-1</h3>
+                    <p>Período académico vigente de ejemplo para la carrera.</p>
+                    <span class="vista-previa-meta">Ejemplo</span>
+                </div>
+            </div>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>La apertura y el cierre de períodos se gestionarán desde este panel.</p>
+            </div>
+        </article>
+
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Anuncios generales</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <div class="vista-previa-fila">
+                    <h3>Semana de inducción</h3>
+                    <p>Consulta el calendario de actividades de bienvenida para el período.</p>
+                    <span class="vista-previa-meta">General · Ejemplo</span>
+                </div>
+            </div>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>La publicación de comunicados oficiales estará disponible próximamente.</p>
+            </div>
+        </article>
+    </aside>
+</section>
+{% endblock %}

@@ -1,0 +1,43 @@
+services:
+  # Backend Django con base de datos SQLite
+  backend:
+    build:
+      context: ./backend
+    container_name: aulaboard-backend
+    # Aplica las migraciones y luego inicia el servidor de desarrollo
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      # Monta el codigo para recarga automatica y persiste db.sqlite3 en el host
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_DEBUG: "True"
+      DJANGO_SECRET_KEY: "django-insecure-aulaboard-dev"
+      DJANGO_ALLOWED_HOSTS: "*"
+      # Origen permitido del frontend para CORS
+      DJANGO_CORS_ALLOWED_ORIGINS: "http://localhost:5173,http://127.0.0.1:5173"
+    mem_limit: 512m # Limite de memoria por restricciones del hardware de desarrollo
+    restart: unless-stopped
+
+  # Frontend Vite (plantilla vanilla)
+  frontend:
+    build:
+      context: ./frontend
+    container_name: aulaboard-frontend
+    # Servidor de desarrollo accesible desde fuera del contenedor
+    command: npm run dev -- --host 0.0.0.0
+    volumes:
+      # Monta el codigo para recarga automatica
+      - ./frontend:/app
+      # Conserva los node_modules instalados dentro de la imagen
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      # URL del backend para futuras peticiones del frontend
+      VITE_API_URL: "http://localhost:8000"
+    depends_on:
+      - backend
+    mem_limit: 512m # Limite de memoria por restricciones del hardware de desarrollo
+    restart: unless-stopped

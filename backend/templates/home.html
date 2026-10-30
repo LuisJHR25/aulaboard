@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{# Portada pública con el resumen del proyecto y los accesos principales. #}
+
+{% block title %}Inicio - AulaBoard{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Anuncios académicos en un solo lugar</h1>
+    <p>
+        AulaBoard centraliza la información de la carrera de Ingeniería en Informática:
+        anuncios generales, avisos por materia y sección, y comunicados de coordinación.
+    </p>
+    <div class="acciones">
+        {% if user.is_authenticated %}
+            <a class="boton" href="{% url 'dashboard' %}">Ir a mi panel</a>
+        {% else %}
+            <a class="boton" href="{% url 'login' %}">Iniciar sesión</a>
+            <a class="boton boton-secundario" href="{% url 'registro' %}">Crear cuenta</a>
+        {% endif %}
+    </div>
+</section>
+
+{# Funcionalidades principales que se habilitarán por fases. #}
+<section class="rejilla">
+    <article class="tarjeta">
+        <h2>Anuncios generales</h2>
+        <p>Académicos, administrativos, eventos, becas y avisos urgentes para toda la carrera.</p>
+    </article>
+    <article class="tarjeta">
+        <h2>Por materia y sección</h2>
+        <p>Cada docente publica en las secciones que tiene asignadas durante el período.</p>
+    </article>
+    <article class="tarjeta">
+        <h2>Mis secciones</h2>
+        <p>Los estudiantes pueden unirse libremente a las secciones que desean seguir.</p>
+    </article>
+</section>
+{% endblock %}

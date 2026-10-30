@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{# Panel del docente: secciones asignadas y publicación de anuncios. #}
+
+{% block title %}Panel del docente - AulaBoard{% endblock %}
+
+{% block content %}
+<section class="cabecera-panel panel-cabecera">
+    <div>
+        <h1>Panel del docente</h1>
+        <p>
+            Hola, {{ user.get_full_name|default:user.username }}.
+            Desde aquí gestionarás los anuncios de tus secciones asignadas.
+        </p>
+    </div>
+    <span class="etiqueta">Docente</span>
+</section>
+
+<section class="panel-columnas">
+    <div class="panel-principal">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Mis secciones asignadas</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <div class="tabla-scroll">
+                    <table class="tabla-panel" aria-label="Secciones asignadas de ejemplo">
+                        <thead>
+                            <tr>
+                                <th scope="col">Materia</th>
+                                <th scope="col">Sección</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Período</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cálculo I</td>
+                                <td><span class="codigo-seccion">M-01</span></td>
+                                <td>Mañana</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Introducción a la Informática</td>
+                                <td><span class="codigo-seccion">T-01</span></td>
+                                <td>Tarde</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Lógica</td>
+                                <td><span class="codigo-seccion">FS-01</span></td>
+                                <td>Fin de semana</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Lógica</td>
+                                <td><span class="codigo-seccion">AE-01</span></td>
+                                <td>Autoestudio</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Desarrollo de Aplicaciones I</td>
+                                <td><span class="codigo-seccion">SP-01</span></td>
+                                <td>Semipresencial</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Métodos Numéricos</td>
+                                <td><span class="codigo-seccion">RP-01</span></td>
+                                <td>Repitencia</td>
+                                <td>2026-1</td>
+                            </tr>
+                            <tr>
+                                <td>Algoritmos y Programación III</td>
+                                <td><span class="codigo-seccion">T-02</span></td>
+                                <td>Tarde</td>
+                                <td>2026-1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="leyenda-secciones">
+                FS: Fin de semana · M: Mañana · T: Tarde · RP: Repitencia · SP: Semipresencial · AE: Autoestudio
+            </p>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>
+                    La asignación real de secciones y la publicación de anuncios se
+                    conectarán con la estructura académica en una próxima fase.
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <aside class="panel-lateral">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Publicar anuncio</h2>
+                <span class="etiqueta">Módulo en preparación</span>
+            </div>
+            <p>
+                Podrás crear un anuncio dirigido a una de tus secciones asignadas y
+                definir su categoría y vigencia.
+            </p>
+        </article>
+
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Historial de anuncios</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <div class="vista-previa-fila">
+                    <h3>Recordatorio de entrega</h3>
+                    <p>La entrega del proyecto final vence el viernes a las 23:59.</p>
+                    <span class="vista-previa-meta">
+                        Desarrollo de Aplicaciones I · SP-01 · Ejemplo
+                    </span>
+                </div>
+            </div>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>Los anuncios activos y vencidos se mostrarán aquí cuando estén disponibles.</p>
+            </div>
+        </article>
+    </aside>
+</section>
+{% endblock %}

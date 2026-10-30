@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{# Confirmación de cierre de sesión; el cierre real ocurre por POST. #}
+
+{% block title %}Cerrar sesión - AulaBoard{% endblock %}
+
+{% block content %}
+<section class="tarjeta formulario">
+    <h1>Cerrar sesión</h1>
+    <p>¿Seguro que quieres cerrar tu sesión en AulaBoard?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="acciones">
+            <button class="boton" type="submit">Sí, cerrar sesión</button>
+            <a class="boton boton-secundario" href="{% url 'dashboard' %}">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

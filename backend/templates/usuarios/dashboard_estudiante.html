@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{# Panel del estudiante: feed de anuncios y secciones con datos de ejemplo. #}
+
+{% block title %}Panel del estudiante - AulaBoard{% endblock %}
+
+{% block content %}
+<section class="cabecera-panel panel-cabecera">
+    <div>
+        <h1>Panel del estudiante</h1>
+        <p>
+            Hola, {{ user.get_full_name|default:user.username }}.
+            Aquí encontrarás los anuncios generales y los de las secciones que sigues.
+        </p>
+    </div>
+    <span class="etiqueta">Estudiante</span>
+</section>
+
+<section class="panel-columnas">
+    <div class="panel-principal">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Anuncios recientes</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <div class="vista-previa-fila">
+                    <h3>Cambio de aula para Cálculo I</h3>
+                    <p>
+                        La sección <span class="codigo-seccion">M-01</span> tendrá su próxima
+                        clase en el aula P4-B2.
+                    </p>
+                    <span class="vista-previa-meta">Cálculo I · M-01 · Publicado hoy · Ejemplo</span>
+                </div>
+                <div class="vista-previa-fila">
+                    <h3>Entrega del proyecto final</h3>
+                    <p>
+                        Recuerda subir la entrega antes del viernes y revisar los criterios
+                        de evaluación.
+                    </p>
+                    <span class="vista-previa-meta">
+                        Desarrollo de Aplicaciones I · SP-01 · Hace 2 días · Ejemplo
+                    </span>
+                </div>
+            </div>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>
+                    El feed completo, las notificaciones y los filtros por categoría se
+                    conectarán en una próxima fase.
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <aside class="panel-lateral">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Mis secciones</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <p>Estas son algunas secciones de ejemplo asociadas a tu perfil.</p>
+                <ul class="lista-secciones">
+                    <li><span class="codigo-seccion">M-01</span> Cálculo I</li>
+                    <li><span class="codigo-seccion">T-01</span> Introducción a la Informática</li>
+                    <li><span class="codigo-seccion">FS-01</span> Lógica</li>
+                    <li><span class="codigo-seccion">AE-01</span> Lógica</li>
+                </ul>
+                <p class="leyenda-secciones">
+                    FS: Fin de semana · M: Mañana · T: Tarde · RP: Repitencia · SP: Semipresencial · AE: Autoestudio
+                </p>
+            </div>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>Unirte o abandonar secciones estará disponible en una próxima fase.</p>
+            </div>
+        </article>
+
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Buscar anuncios</h2>
+                <span class="etiqueta">Módulo en preparación</span>
+            </div>
+            <p>
+                La búsqueda por categoría, materia, sección, fecha o palabra clave se
+                habilitará cuando el módulo de anuncios esté conectado.
+            </p>
+        </article>
+    </aside>
+</section>
+{% endblock %}

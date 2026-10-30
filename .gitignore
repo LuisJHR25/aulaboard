@@ -1,0 +1,12 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+.venv/
+venv/
+
+# Node / Vite
+node_modules/
+dist/
+npm-debug.log*

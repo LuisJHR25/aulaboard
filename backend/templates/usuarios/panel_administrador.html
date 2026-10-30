@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{# Panel de administración: usuarios, roles y configuración general. #}
+
+{% block title %}Panel de administración - AulaBoard{% endblock %}
+
+{% block content %}
+<section class="cabecera-panel panel-cabecera">
+    <div>
+        <h1>Panel de administración</h1>
+        <p>
+            Hola, {{ user.get_full_name|default:user.username }}.
+            Administra usuarios, roles y la configuración general del sistema.
+        </p>
+    </div>
+    <span class="etiqueta">Administrador</span>
+</section>
+
+<section aria-labelledby="metricas-titulo">
+    <div class="panel-bloque-cabecera">
+        <h2 id="metricas-titulo">Resumen de usuarios</h2>
+        <span class="etiqueta">Datos reales</span>
+    </div>
+    <div class="panel-metricas">
+        <article class="panel-metrica">
+            <span class="panel-metrica-etiqueta">Usuarios totales</span>
+            <strong class="panel-metrica-valor">{{ metricas.total }}</strong>
+        </article>
+        <article class="panel-metrica">
+            <span class="panel-metrica-etiqueta">Usuarios activos</span>
+            <strong class="panel-metrica-valor">{{ metricas.activos }}</strong>
+        </article>
+        <article class="panel-metrica">
+            <span class="panel-metrica-etiqueta">Estudiantes activos</span>
+            <strong class="panel-metrica-valor">{{ metricas.estudiantes_activos }}</strong>
+        </article>
+        <article class="panel-metrica">
+            <span class="panel-metrica-etiqueta">Docentes activos</span>
+            <strong class="panel-metrica-valor">{{ metricas.docentes_activos }}</strong>
+        </article>
+        <article class="panel-metrica">
+            <span class="panel-metrica-etiqueta">Coordinadores activos</span>
+            <strong class="panel-metrica-valor">{{ metricas.coordinadores_activos }}</strong>
+        </article>
+        <article class="panel-metrica">
+            <span class="panel-metrica-etiqueta">Administradores activos</span>
+            <strong class="panel-metrica-valor">{{ metricas.administradores_activos }}</strong>
+        </article>
+    </div>
+</section>
+
+<section class="panel-columnas">
+    <div class="panel-principal">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Accesos rápidos</h2>
+                <span class="etiqueta">Disponible</span>
+            </div>
+            <p>Gestiona las cuentas y los permisos desde las herramientas de Django.</p>
+            <div class="acciones-panel">
+                <a class="boton" href="{% url 'admin:index' %}">Abrir panel de administración</a>
+                <a class="boton boton-secundario" href="{% url 'admin:usuarios_usuario_changelist' %}">
+                    Gestionar usuarios
+                </a>
+            </div>
+        </article>
+
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Actividad general</h2>
+                <span class="etiqueta">Módulo en preparación</span>
+            </div>
+            <p>
+                La supervisión de actividad y los parámetros generales del sistema se
+                incorporarán en una próxima fase.
+            </p>
+        </article>
+    </div>
+
+    <aside class="panel-lateral">
+        <article class="panel-bloque">
+            <div class="panel-bloque-cabecera">
+                <h2>Categorías</h2>
+                <span class="etiqueta">Vista previa</span>
+            </div>
+            <div class="vista-previa">
+                <div class="vista-previa-cabecera">
+                    <span class="vista-previa-etiqueta">Vista previa · datos de ejemplo</span>
+                </div>
+                <ul class="lista-secciones">
+                    <li>Académico</li>
+                    <li>Administrativo</li>
+                    <li>Eventos</li>
+                    <li>Becas</li>
+                </ul>
+            </div>
+            <div class="modulo-pendiente">
+                <span class="etiqueta">Módulo en preparación</span>
+                <p>La configuración de categorías de anuncios estará disponible próximamente.</p>
+            </div>
+        </article>
+    </aside>
+</section>
+{% endblock %}
